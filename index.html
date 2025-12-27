@@ -9,10 +9,54 @@
 <body>
     <div class="main_body">
         <div class="burger_details">
+            
+            <div class="tabs_bar">
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="openTab(event, 'burgers')">Burgers</button>
+                    <button class="tab-btn" onclick="openTab(event, 'fries')">Fries</button>
+                    <button class="tab-btn" onclick="openTab(event, 'drinks')">Drinks</button>
+                    <label for="" style="display: flex; padding-left: 150px; gap: 10px;">
+                        <img src="assets/img/logo.png" alt="">
+                        <h1>GrillMaster</h1>
+                    </label>
+                    
+                </div>
 
+                <div class="search_bar">
+                    <input type="text" placeholder="Search items here..." id="searchInput" onkeyup="searchItems()">
+                </div>
+
+                <div id="burgers" class="tab-content active">
+                    <h2>Burgers</h2>
+                    <div id="burgersList"></div>
+                </div>
+
+                <div id="fries" class="tab-content">
+                    <h2>Fries</h2>
+                    <div id="friesList"></div>
+                </div>
+
+                <div id="drinks" class="tab-content">
+                    <h2>Drinks</h2>
+                    <div id="drinksList"></div>
+                </div>
+            </div>
         </div>
-        <div class="order_details">
 
+        
+
+        <div class="order_details">
+            <div class="order_box">
+               
+                <h2>Your Order</h2>
+                <ul id="orderItems"></ul>
+                <h3>Total: Rs.<span id="total">0</span></h3>
+
+                <input type="text" id="customerName" placeholder="Enter Your Name"/>
+                <br>
+                <button onclick="placeOrder()">Place Order</button>
+                <button onclick="cancelOrder()">Cancel Order</button>
+            </div>
         </div>
     </div>
     

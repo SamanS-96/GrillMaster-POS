@@ -1,0 +1,63 @@
+.main_body{
+    width: 100%;
+    display: flex;
+}
+.burger_details{
+    width: 70%;
+}
+.order_details{
+    width: 30%;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.tabs {
+  display: flex;  
+  border-bottom: 2px solid #ddd;
+}
+.tabs h1{
+    color: #194779;
+}
+.tabs img{
+    width: 55px;
+    height: 60px;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.tab-btn:hover {
+  background-color: #f1f1f1;
+}
+
+.tab-btn.active {
+  border-bottom: 3px solid #007bff;
+  font-weight: bold;
+}
+
+.tab-content {
+  display: none;
+  padding: 20px;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.search_bar{
+    padding: 20px;
+}
+.tabs_bar{
+    padding: 20px;
+}
+.search_bar input{
+    height: 30px;
+    width: 400px;
+}
