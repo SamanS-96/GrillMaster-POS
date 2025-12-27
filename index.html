@@ -10,7 +10,7 @@
 
   <!-- HEADER -->
   <header class="pos-header">
-    <img src="assets/img/logo.png" alt="logo">
+    <img src="assets/img/logo.png" alt="logo" class="logo">
     <h1>GrillMaster POS</h1>
   </header>
 
@@ -48,12 +48,11 @@
 
     <!-- ORDER AREA -->
     <div class="order_details">
-      <button class="orders-btn" onclick="toggleOrderPane()">🧾 Orders</button>
       <div class="order_panel">
 
-        <h2>Current Order</h2>
+        <h2 style="color: rgb(34, 34, 129);">Current Order</h2>
 
-        <input type="text" id="customerName" placeholder="Customer name">
+        <input type="text" id="customerName" placeholder="Enter your name" style="margin-top: 10px; margin-bottom: 10px; height: 30px;">
 
         <div id="orderItems" class="order_items">
           <p class="empty">No items added</p>
@@ -66,6 +65,7 @@
 
         <button class="btn primary" onclick="placeOrder()">Place Order</button>
         <button class="btn danger" onclick="clearOrder()">Cancel</button>
+        <button class="btn secondary" onclick="toggleOrderPane()">🧾 View Orders</button>
 
       </div>
     </div>
@@ -74,8 +74,12 @@
 
   <!-- ORDER HISTORY PANE -->
   <div id="orderPane" class="order-pane hidden">
-    <h2>Orders</h2>
-    <input type="text" id="orderSearch" placeholder="Search order..." onkeyup="searchOrders()">
+    <div class="order-pane-header">
+      <h2>Orders</h2>
+      <button class="close-btn" onclick="toggleOrderPane()">✖</button>
+    </div>
+
+    <input type="text" id="orderSearch" placeholder="Search by name or ID" onkeyup="searchOrders()" style="height: 25px; margin-bottom: 10px;">
     <ul id="orderList"></ul>
   </div>
 
