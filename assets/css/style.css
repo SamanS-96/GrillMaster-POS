@@ -1,40 +1,62 @@
-.main_body{
-    width: 100%;
-    display: flex;
-}
-.burger_details{
-    width: 70%;
-}
-.order_details{
-    width: 30%;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   font-family: Arial, sans-serif;
+  background: #f4f6f9;
+}
+
+/* HEADER */
+.pos-header {
+  background: #194779;
+  color: white;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* FOOTER */
+.pos-footer {
+  background: #194779;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+}
+
+/* MAIN */
+.main_body {
+  display: flex;
+  min-height: calc(100vh - 110px);
+}
+
+/* MENU */
+.burger_details {
+  width: 70%;
+  background: white;
+  border-right: 1px solid #ddd;
+}
+
+.tabs_bar {
+  padding: 15px;
 }
 
 .tabs {
-  display: flex;  
+  display: flex;
+  gap: 10px;
   border-bottom: 2px solid #ddd;
-}
-.tabs h1{
-    color: #194779;
-}
-.tabs img{
-    width: 55px;
-    height: 60px;
+  padding-bottom: 10px;
 }
 
-.tab-btn {
+.tab-btn, .orders-btn {
   background: none;
   border: none;
-  padding: 12px 20px;
+  font-size: 15px;
   cursor: pointer;
-  font-size: 16px;
-}
-
-.tab-btn:hover {
-  background-color: #f1f1f1;
 }
 
 .tab-btn.active {
@@ -42,22 +64,106 @@ body {
   font-weight: bold;
 }
 
-.tab-content {
-  display: none;
-  padding: 20px;
+.search_bar input {
+  width: 100%;
+  padding: 10px;
+  margin: 15px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
-.tab-content.active {
-  display: block;
+/* MENU GRID */
+#burgersList, #friesList, #drinksList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
 }
 
-.search_bar{
-    padding: 20px;
+.menu-card {
+  background: white;
+  border-radius: 14px;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  cursor: pointer;
 }
-.tabs_bar{
-    padding: 20px;
+
+.menu-card img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
 }
-.search_bar input{
-    height: 30px;
-    width: 400px;
+
+/* ORDER */
+.order_details {
+  width: 30%;
+  padding: 15px;
+}
+
+.order_panel {
+  background: white;
+  padding: 15px;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.order_items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.order-card {
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.qty button {
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+}
+
+.order_total {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.primary { background: #28a745; color: white; }
+.danger { background: #dc3545; color: white; }
+
+/* ORDER PANE */
+.order-pane {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 320px;
+  height: 100%;
+  background: white;
+  padding: 15px;
+  box-shadow: -2px 0 8px rgba(0,0,0,0.2);
+}
+
+.hidden { display: none; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .main_body { flex-direction: column; }
+  .burger_details, .order_details { width: 100%; }
 }

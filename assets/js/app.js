@@ -1,150 +1,114 @@
-console.log("js loaded..");
-
-
-/***********************
- * MENU DATA
- ***********************/
 const menu = {
   burgers: [
-    { id: 1, name: "Cheese Burger", price: 550 },
-    { id: 2, name: "Chicken Burger", price: 650 },
-    { id: 3, name: "Veg Burger", price: 450 }
+    { id: 1, name: "Cheese Burger", price: 550, image: "assets/images/cheese-burger.jpg" },
+    { id: 2, name: "Chicken Burger", price: 650, image: "assets/images/chicken-burger.jpg" }
   ],
-  fries: [
-    { id: 4, name: "French Fries", price: 300 },
-    { id: 5, name: "Cheese Fries", price: 350 }
-  ],
-  drinks: [
-    { id: 6, name: "Coke", price: 200 },
-    { id: 7, name: "Sprite", price: 180 }
-  ]
+  fries: [{ id: 3, name: "French Fries", price: 300, image: "assets/images/fries.jpg" }],
+  drinks: [{ id: 4, name: "Coke", price: 200, image: "assets/images/coke.jpg" }]
 };
 
-/***********************
- * STATE
- ***********************/
 let activeCategory = "burgers";
-let order = [];
+let currentOrder = { orderId: null, customerName: "", items: [], total: 0 };
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
 
-/***********************
- * RENDER ITEMS
- ***********************/
-function renderItems(items, listId) {
-  const list = document.getElementById(listId);
-  list.innerHTML = "";
-
-  if (items.length === 0) {
-    list.innerHTML = "<p>No items found</p>";
-    return;
-  }
-
+/* RENDER MENU */
+function renderItems(items, containerId) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = "";
   items.forEach(item => {
-    const div = document.createElement("div");
-    div.innerHTML = `
-      <p>
-        ${item.name} - Rs.${item.price}
-        <button onclick="addToOrder(${item.id})">Add</button>
-      </p>
-    `;
-    list.appendChild(div);
+    const card = document.createElement("div");
+    card.className = "menu-card";
+    card.innerHTML = `
+      <img src="${item.image}">
+      <h4>${item.name}</h4>
+      <p>Rs. ${item.price}</p>
+      <button>Add</button>`;
+    card.onclick = () => addToOrder(item.id);
+    container.appendChild(card);
   });
 }
 
-/***********************
- * INITIAL LOAD
- ***********************/
-renderItems(menu.burgers, "burgerList");
+renderItems(menu.burgers, "burgersList");
 renderItems(menu.fries, "friesList");
 renderItems(menu.drinks, "drinksList");
 
-/***********************
- * TAB SWITCH
- ***********************/
-function openTab(event, tabId) {
-  document.querySelectorAll(".tab-content").forEach(tab =>
-    tab.classList.remove("active")
-  );
-  document.querySelectorAll(".tab-btn").forEach(btn =>
-    btn.classList.remove("active")
-  );
-
-  document.getElementById(tabId).classList.add("active");
-  event.currentTarget.classList.add("active");
-
-  activeCategory = tabId;
-  document.getElementById("searchInput").value = "";
-
-  renderItems(menu[activeCategory], `${activeCategory}List`);
+/* TAB */
+function openTab(e, tab) {
+  document.querySelectorAll(".tab-content").forEach(t => t.classList.remove("active"));
+  document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+  document.getElementById(tab).classList.add("active");
+  e.target.classList.add("active");
+  activeCategory = tab;
 }
 
-/***********************
- * SEARCH ITEMS
- ***********************/
+/* SEARCH */
 function searchItems() {
-  const query = document.getElementById("searchInput").value.toLowerCase();
-  const items = menu[activeCategory];
-
-  const filteredItems = items.filter(item =>
-    item.name.toLowerCase().includes(query)
-  );
-
-  renderItems(filteredItems, `${activeCategory}List`);
+  const q = searchInput.value.toLowerCase();
+  const filtered = menu[activeCategory].filter(i => i.name.toLowerCase().includes(q));
+  renderItems(filtered, activeCategory + "List");
 }
 
-/***********************
- * ORDER FUNCTIONS
- ***********************/
+/* ORDER */
 function addToOrder(id) {
-  const allItems = [
-    ...menu.burgers,
-    ...menu.fries,
-    ...menu.drinks
-  ];
-
-  const item = allItems.find(i => i.id === id);
-  order.push(item);
-  renderOrder();
+  const all = [...menu.burgers, ...menu.fries, ...menu.drinks];
+  const item = all.find(i => i.id === id);
+  const existing = currentOrder.items.find(i => i.id === id);
+  existing ? existing.qty++ : currentOrder.items.push({ ...item, qty: 1 });
+  updateOrderView();
 }
 
-function renderOrder() {
-  const list = document.getElementById("orderItems");
-  const totalSpan = document.getElementById("total");
-
+function updateOrderView() {
+  const list = orderItems;
   list.innerHTML = "";
   let total = 0;
 
-  order.forEach((item, index) => {
-    total += item.price;
-    const li = document.createElement("li");
-    li.innerHTML = `
-      ${item.name} - Rs.${item.price}
-      <button onclick="removeItem(${index})">❌</button>
-    `;
-    list.appendChild(li);
+  currentOrder.items.forEach((i, idx) => {
+    total += i.price * i.qty;
+    list.innerHTML += `
+      <div class="order-card">
+        <strong>${i.name}</strong>
+        <div class="qty">
+          <button onclick="iDec(${idx})">-</button>${i.qty}
+          <button onclick="iInc(${idx})">+</button>
+        </div>
+        Rs.${i.price * i.qty}
+      </div>`;
   });
 
-  totalSpan.textContent = total;
+  currentOrder.total = total;
+  total.innerText = total;
 }
 
-function removeItem(index) {
-  order.splice(index, 1);
-  renderOrder();
-}
+function iInc(i){ currentOrder.items[i].qty++; updateOrderView(); }
+function iDec(i){ currentOrder.items[i].qty > 1 ? currentOrder.items[i].qty-- : currentOrder.items.splice(i,1); updateOrderView(); }
 
-function cancelOrder() {
-  if (confirm("Cancel the order?")) {
-    order = [];
-    renderOrder();
-  }
-}
-
+/* SAVE */
 function placeOrder() {
-  if (order.length === 0) {
-    alert("No items in the order!");
-    return;
-  }
-  alert("Order placed successfully!");
-  order = [];
-  renderOrder();
+  if (!customerName.value) return alert("Enter customer name");
+  currentOrder.orderId = Date.now();
+  currentOrder.customerName = customerName.value;
+  orders.push({ ...currentOrder });
+  localStorage.setItem("orders", JSON.stringify(orders));
+  clearOrder();
+  alert("Order placed!");
 }
 
+function clearOrder() {
+  currentOrder = { orderId:null, customerName:"", items:[], total:0 };
+  customerName.value="";
+  updateOrderView();
+}
+
+/* ORDER HISTORY */
+function toggleOrderPane() {
+  orderPane.classList.toggle("hidden");
+}
+
+function searchOrders() {
+  orderList.innerHTML="";
+  orders.filter(o =>
+    o.customerName.toLowerCase().includes(orderSearch.value.toLowerCase())
+  ).forEach(o => {
+    orderList.innerHTML += `<li>#${o.orderId} - ${o.customerName} - Rs.${o.total}</li>`;
+  });
+}
