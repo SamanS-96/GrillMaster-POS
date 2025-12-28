@@ -3,14 +3,42 @@
  ****************************************************/
 const menu = {
   burgers: [
-    { id: 1, name: "Cheese Burger", price: 550, image: "assets/img/cheese-burger.jfif" },
-    { id: 2, name: "Chicken Burger", price: 650, image: "assets/img/chicken-burger.jfif" }
+    { id: 1, name: "Chicken Burger", price: 650, image: "assets/img/Burgers/Chicken-Burger.jfif" },
+    { id: 2, name: "Classic Chicken Burger", price: 1350, image: "assets/img/Burgers/ClassicChicken-Burger.jfif" },
+    { id: 3, name: "Crispy Chicken Burger", price: 1450, image: "assets/img/Burgers/CrispyChicken-Burger.jfif" },
+    { id: 4, name: "Cheese Burger", price: 550, image: "assets/img/Burgers/Cheese-Burger.jfif" },
+    { id: 5, name: "Zinger Burger", price: 1450, image: "assets/img/Burgers/Zinger-Burger.jfif" },
+    { id: 6, name: "Zinger Cheese Burger ", price: 1650, image: "assets/img/Burgers/ZingerCheese-Burger.jfif" },
+    { id: 7, name: "Double Decker Burger", price: 2250, image: "assets/img/Burgers/DoubleDecker-Burger.jfif" },
+    { id: 8, name: "Veggie Burger", price: 1180, image: "assets/img/Burgers/Veggie-Burger.jfif" },
+    { id: 9, name: "Tandoori Burger", price: 1850, image: "assets/img/Burgers/Tanduri-Burger.jfif" },
+    { id: 10, name: "Smash Burger", price: 2000, image: "assets/img/Burgers/Smash-Burger.jfif" },
+    { id: 11, name: "Beef Burger", price: 1820, image: "assets/img/Burgers/Beef-Burger.jfif" },
+    { id: 12, name: "Gourmet Beef Burger", price: 2600, image: "assets/img/Burgers/GourmetBeef-Burger.jfif" }
   ],
   fries: [
-    { id: 3, name: "French Fries", price: 300, image: "assets/img/french-fries.jfif" }
+    { id: 31, name: "French Fries", price: 300, image: "assets/img/Fries/French-Fry.jfif" },
+    { id: 32, name: "Shoe String Fries", price: 1400, image: "assets/img/Fries/Shoestring-Fry.jfif" },
+    { id: 33, name: "Crinkle Cut Fries", price: 1800, image: "assets/img/Fries/CrinkleCut-Fry.jfif" },
+    { id: 34, name: "Masala Fries", price: 1600, image: "assets/img/Fries/Masala-Fry.jfif" },
+    { id: 35, name: "Curly Fries", price: 1450, image: "assets/img/Fries/Curly-Fry.jfif" },
+    { id: 36, name: "Chicken Fries", price: 1550, image: "assets/img/Fries/Chicken-Fry.jfif" },
+    { id: 37, name: "Straight Cut Fries", price: 1300, image: "assets/img/Fries/StraightCut-Fry.jfif" },
+    { id: 38, name: "Tindora Fries", price: 1750, image: "assets/img/Fries/Tindora-Fry.jfif" }
   ],
   drinks: [
-    { id: 4, name: "Coke", price: 200, image: "assets/img/coke.jfif" }
+    { id: 61, name: "Coke", price: 200, image: "assets/img/Drinks/Coke-Drink.jfif" },
+    { id: 62, name: "Pepsi", price: 200, image: "assets/img/Drinks/Pepsi-Drink.jfif" },
+    { id: 63, name: "Necto", price: 180, image: "assets/img/Drinks/Necto-Drink.jfif" },
+    { id: 64, name: "Cream Soda", price: 220, image: "assets/img/Drinks/CreamSoda-Drink.jfif" },
+    { id: 65, name: "Sprite", price: 230, image: "assets/img/Drinks/Sprite-Drink.jfif" },
+    { id: 66, name: "Mirinda", price: 200, image: "assets/img/Drinks/Mirinda-Drink.jfif" },
+    { id: 67, name: "Ginger Beer", price: 250, image: "assets/img/Drinks/GingerBeer-Drink.jfif" },
+    { id: 68, name: "Fanta", price: 220, image: "assets/img/Drinks/Fanta-Drink.jfif" },
+    { id: 69, name: "Soda", price: 150, image: "assets/img/Drinks/Soda-Drink.jfif" },
+    { id: 70, name: "Tinda", price: 500, image: "assets/img/Drinks/Tinda-Drink.jfif" },
+    { id: 71, name: "Fontana", price: 550, image: "assets/img/Drinks/Fontana-Drink.jfif" },
+    { id: 72, name: "Kist", price: 520, image: "assets/img/Drinks/Kist-Drink.jfif" },
   ]
 };
 
