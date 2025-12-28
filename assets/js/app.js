@@ -207,15 +207,27 @@ function placeOrder() {
   }
 
   currentOrder.customerName = name;
-  currentOrder.orderId = Date.now();
 
-  orders.push({ ...currentOrder });
+  if (currentOrder.orderId) {
+    // 🔄 UPDATE EXISTING ORDER
+    const index = orders.findIndex(o => o.orderId === currentOrder.orderId);
+    if (index !== -1) {
+      orders[index] = { ...currentOrder };
+    }
+  } else {
+    // 🆕 CREATE NEW ORDER
+    currentOrder.orderId = Date.now();
+    orders.push({ ...currentOrder });
+  }
+
+  // Save & refresh
   localStorage.setItem("orders", JSON.stringify(orders));
-
-  clearOrder();
   renderOrders();
-  alert("Order placed successfully!");
+  clearOrder();
+
+  alert("Order saved successfully!");
 }
+
 
 /****************************************************
  * CLEAR CURRENT ORDER
