@@ -1,0 +1,233 @@
+* { 
+    box-sizing: border-box; 
+    margin:0; 
+    padding:0; 
+}
+body { 
+    font-family: Arial, sans-serif; 
+    background: #f4f6f9; 
+}
+
+/* HEADER */
+.pos-header {
+  background: #194779;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pos-header .logo { 
+    width: 40px; 
+    height: 40px; 
+    object-fit: contain; 
+}
+
+/* FOOTER */
+.pos-footer { 
+    background:#194779; 
+    color:white; 
+    text-align:center; 
+    padding:10px; 
+    font-size:14px; 
+}
+
+/* MAIN */
+.main_body { 
+    display: flex; 
+    min-height: calc(100vh - 110px); 
+}
+.burger_details { 
+    width: 70%; 
+    background:white; 
+    border-right:1px solid #ddd; 
+}
+.order_details { 
+    width: 30%; 
+    padding:15px; 
+}
+
+/* TABS */
+.tabs_bar { 
+    padding:15px; 
+}
+.tabs { 
+    display:flex; 
+    gap:10px; 
+    border-bottom:2px solid #ddd; 
+    padding-bottom:10px; 
+}
+.tab-btn, .orders-btn { 
+    background:none; 
+    border:none; 
+    font-size:15px; 
+    cursor:pointer; 
+}
+.tab-btn.active { 
+    border-bottom:3px solid #007bff; 
+    font-weight:bold; 
+}
+
+/* SEARCH */
+.search_bar input { 
+    width:100%; 
+    padding:10px; 
+    margin:15px 0; 
+    border-radius:8px; 
+    border:1px solid #ccc; 
+}
+
+/* MENU GRID */
+#burgersList,#friesList,#drinksList { 
+    display:grid; 
+    grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); 
+    gap:15px; 
+}
+.menu-card { 
+    background:#e6e3e3; 
+    border-radius:14px; 
+    padding:10px; 
+    box-shadow:0 2px 8px rgba(0,0,0,0.1); 
+    text-align:center; 
+    cursor:pointer; 
+}
+.menu-card img { 
+    width:100%; 
+    height:120px; 
+    object-fit:cover; 
+    border-radius:10px; 
+}
+.menu-card button{
+    background-color: #28a745;
+    width: 100px;
+    border-radius: 5px;
+    color: #fffefe;
+}
+
+/* ORDER PANEL */
+.order_panel { 
+    background:white; 
+    padding:15px; 
+    border-radius:14px; 
+    box-shadow:0 2px 8px rgba(0,0,0,0.1); 
+}
+.order_items { 
+    display:flex; 
+    flex-direction:column; 
+    gap:10px; 
+}
+.order-card { 
+    display:grid; 
+    grid-template-columns:1fr auto auto; 
+    gap:10px; 
+    align-items:center; 
+    padding:8px; 
+    background:#b6a4a4; 
+    border-radius:10px; 
+}
+.order-card .qty button { 
+    width:24px;
+    height:24px;
+    border-radius:30%;
+    border:none;
+    background:#007bff;
+    color:white; 
+    font-weight: bold;
+    cursor:pointer; 
+}
+.order_total { 
+    display:flex; 
+    justify-content:space-between; 
+    margin:15px 0; 
+}
+.btn { 
+    width:100%; 
+    padding:10px; 
+    border-radius:8px; 
+    border:none; 
+    margin-bottom:8px; 
+    cursor:pointer; 
+}
+.primary { 
+    background:#28a745;
+    color:white; 
+} 
+.danger{ 
+    background:#dc3545;
+    color:white; 
+} 
+.secondary{ 
+    background:#007bff;
+    color:white; 
+}
+
+/* ORDER HISTORY PANE */
+.order-pane { 
+    position:fixed; 
+    right:10px; top:10px; 
+    width:320px; 
+    height:100%; 
+    background:rgb(231, 231, 231); 
+    padding:15px; 
+    box-shadow:-2px 0 8px rgba(0,0,0,0.2); 
+    overflow-y:auto; 
+    z-index:1000; 
+}
+.order-pane-header { 
+    display:flex; 
+    justify-content:space-between; 
+    align-items:center; 
+    margin-bottom:10px; 
+    color: #11375f;
+}
+.order-pane .close-btn { 
+    background:#dc3545; 
+    color:rgb(255, 253, 253); 
+    border:none; 
+    border-radius:50%; 
+    width:30px;
+    height:30px; 
+    cursor:pointer; 
+}
+
+/* ORDER LIST */
+#orderList li { 
+    background:#9b8787; 
+    margin-bottom:8px; 
+    padding:8px; 
+    border-radius:8px; 
+    list-style:none; 
+    display:flex; 
+    justify-content:space-between; 
+    align-items:center; 
+}
+#orderList li button { 
+    margin-left:5px; 
+    padding:4px 6px; 
+    border:none; 
+    border-radius:5px; 
+    cursor:pointer; 
+    background-color: rgb(23, 75, 38);
+    color: #fffdfd;
+    margin: 2px;
+    width: 50px;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .main_body { flex-direction:column; }
+  .burger_details,.order_details { width:100%; }
+  .order-pane { width:100%; }
+}
+
+.hidden {
+  display: none !important;
+}
+
+.tab-content {
+  display: none;  /* hide by default */
+}
+.tab-content.active {
+  display: block; /* show only active tab */
+}
+

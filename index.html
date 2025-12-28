@@ -1,22 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GrillMaster POS</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
-    <div class="main_body">
-        <div class="burger_details">
 
-        </div>
-        <div class="order_details">
+  <!-- HEADER -->
+  <header class="pos-header">
+    <img src="assets/img/logo.png" alt="logo" class="logo">
+    <h1>GrillMaster POS</h1>
+  </header>
 
+  <!-- MAIN -->
+  <div class="main_body">
+
+    <!-- MENU AREA -->
+    <div class="burger_details">
+
+      <div class="tabs_bar">
+        <div class="tabs">
+          <button class="tab-btn active" onclick="openTab(event,'burgers')">Burgers</button>
+          <button class="tab-btn" onclick="openTab(event,'fries')">Fries</button>
+          <button class="tab-btn" onclick="openTab(event,'drinks')">Drinks</button>
         </div>
+
+        <div class="search_bar">
+          <input type="text" id="searchInput" placeholder="Search items..." onkeyup="searchItems()">
+        </div>
+
+        <div id="burgers" class="tab-content active">
+          <div id="burgersList"></div>
+        </div>
+
+        <div id="fries" class="tab-content">
+          <div id="friesList"></div>
+        </div>
+
+        <div id="drinks" class="tab-content">
+          <div id="drinksList"></div>
+        </div>
+
+      </div>
     </div>
-    
 
-    <script src="assets/js/app.js"></script>
+    <!-- ORDER AREA -->
+    <div class="order_details">
+      <div class="order_panel">
+
+        <h2 style="color: rgb(34, 34, 129);">Current Order</h2>
+
+        <input type="text" id="customerName" placeholder="Enter your name" style="margin-top: 10px; margin-bottom: 10px; height: 30px;">
+
+        <div id="orderItems" class="order_items">
+          <p class="empty">No items added</p>
+        </div>
+
+        <div class="order_total">
+          <span>Total</span>
+          <strong>Rs. <span id="total">0</span></strong>
+        </div>
+
+        <button class="btn primary" onclick="placeOrder()">Place Order</button>
+        <button class="btn danger" onclick="clearOrder()">Cancel</button>
+        <button class="btn secondary" onclick="toggleOrderPane()">🧾 View Orders</button>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ORDER HISTORY PANE -->
+  <div id="orderPane" class="order-pane hidden">
+    <div class="order-pane-header">
+      <h2>Orders</h2>
+      <button class="close-btn" onclick="toggleOrderPane()">✖</button>
+    </div>
+
+    <input type="text" id="orderSearch" placeholder="Search by name or ID" onkeyup="searchOrders()" style="height: 25px; margin-bottom: 10px;">
+    <ul id="orderList"></ul>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="pos-footer">
+    © 2025 GrillMaster POS | All Rights Reserved
+  </footer>
+
+  <script src="assets/js/app.js"></script>
 </body>
 </html>
